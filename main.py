@@ -270,9 +270,9 @@ async def account_login(bot: Client, m: Message):
                 pdfcount = 0
                 with open(x, "r", encoding="utf-8") as f:
                     for line in f:
-                        link = line.strip().split("://", 1)
-                        links.append(link)
-                        if ".pdf" in link[1]:
+                        name, url = line.strip().split(":", 1)
+                        links.append((name.strip(), url.strip()))
+                        if ".pdf" in url:
                             pdfcount += 1 
                         else:
                             videocount += 1
@@ -499,7 +499,6 @@ async def account_login(bot: Client, m: Message):
                 else:
                     prog = await m.reply_text(f"📥 **Downloading **\n\n**➭ Count » {str(count).zfill(3)} **\n**➭ Video Name » ** `{name}`\n**➭ Quality** » `{raw_text2}`\n**➭ Video Url »** `{url}`\n**➭ Thumbnail »** `{input6.text}` \n\n✨ **Bot Made by @EX_DOLPHIN**\n**━━━━━━━✦✗✦━━━━━━━**")
                     time.sleep(2)
-                    key = await get_drm_keys(url)
                     res_file = await helper.drm_download_video(url,quality, name,key)
                     filename = res_file
                     await prog.delete(True)
