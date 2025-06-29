@@ -415,7 +415,6 @@ url = url.replace("https://https://", "https://")
 
 
             name = f"{name1[:60]}"
-'
 
             if "/master.mpd" in url :
                 if "https://sec1.pw.live/" in url:
